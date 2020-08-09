@@ -1,0 +1,29 @@
+{
+  "development": {
+    "user": "root",
+    "password": "",
+    "database": "node_test",
+    "host": "localhost",
+    "port": "3306",
+    "dialect": "mysql",
+    "ssl": false
+  },
+  "production": {
+    "user":  "",
+    "password": "",
+    "database": "",
+    "schema": "",
+    "host": "",
+    "port": "",
+    "dialect": "",
+    "ssl": true
+  },
+  "test": {
+    "user": "",
+    "password": "",
+    "database": "",
+    "schema": "",
+    "host": "",
+    "dialect": ""
+  }
+}

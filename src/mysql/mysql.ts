@@ -1,20 +1,22 @@
-
 import mysql = require("mysql");
+const env = process.env.NODE_ENV;
 
 
 export default class MySQL {
     private static _intance: MySQL;
-
     cnn: mysql.Connection;
     conected: boolean = false;
 
     constructor() {
         console.log('db class init');
+        // @ts-ignore
+        const {host,user,password,port,database} = require("./mysql.config.json")[env];
         this.cnn = mysql.createConnection( {
-          host: 'localhost',
-          user: 'root',
-          password: '',
-          database: 'node_test',
+            host,
+            user,
+            password,
+            database,
+            port
         });
 
         this.conectDB();
@@ -24,12 +26,12 @@ export default class MySQL {
         return this._intance || ( this._intance = new this() );
     }
 
-    static executeQuery( query: string ) {
-        try {
-           return this.instance.cnn.query( query)
-        } catch (e) {
-          throw e
-        }
+    static executeQuery( query: string, callback: Function  ) {
+
+           return this.instance.cnn.query( query , (err, result, fields) => {
+               if (err) { return callback(err) }
+               callback(null,result);
+        })
     }
 
     private conectDB() {

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "html": "copyfiles -u 1 src/public/*.html dist",
-    "build": "tsc && npm run html"
+    "configs": "copyfiles .evn dist && copyfiles -u 2 src/mysql/*.json dist/mysql/",
+    "build": "tsc && npm run html && npm run configs"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/santobuonoivan/apirest-node-typescrypt-template#readme",
   "dependencies": {
+    "@types/node": "^14.0.27",
     "copyfiles": "^2.3.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
