@@ -1,0 +1,1 @@
+# apirest-node-typescrypt-template
